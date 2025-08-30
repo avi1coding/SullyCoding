@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - Sully Studios</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.6;
+        color: #ffffff;
+        background-color: #1a1a1a;
+      }
+
+      /* Header & Navigation */
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #2a2a2a;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ff6b35;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      nav ul li a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+
+      nav ul li a:hover {
+        color: #ff6b35;
+      }
+
+      nav ul li a.cta-button {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+      }
+
+      nav ul li a.cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 6rem 2rem 4rem;
+        text-align: center;
+        background: linear-gradient(
+            135deg,
+            rgba(26, 26, 26, 0.9),
+            rgba(42, 42, 42, 0.8)
+          ),
+          radial-gradient(circle at 50% 20%, #ff6b35 0%, transparent 50%);
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.3rem;
+        color: #e0e0e0;
+        max-width: 700px;
+        margin: 0 auto 2rem;
+        line-height: 1.7;
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 3rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ff6b35;
+        display: block;
+      }
+
+      .stat-label {
+        color: #cccccc;
+        font-size: 0.9rem;
+      }
+
+      /* Course Options Section */
+      .course-options {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        font-size: 2.8rem;
+        text-align: center;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-subtitle {
+        text-align: center;
+        color: #cccccc;
+        font-size: 1.2rem;
+        margin-bottom: 3rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .course-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .course-card {
+        background: linear-gradient(145deg, #333333, #404040);
+        padding: 2.5rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+        border: 2px solid rgba(255, 107, 53, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .course-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+      }
+
+      .course-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(255, 107, 53, 0.2);
+        border-color: #ff6b35;
+      }
+
+      .course-card.featured {
+        border: 3px solid #ff6b35;
+        transform: scale(1.05);
+      }
+
+      .course-card.featured::after {
+        content: "MOST POPULAR";
+        position: absolute;
+        top: -1px;
+        right: 20px;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        border-radius: 0 0 8px 8px;
+      }
+
+      .course-icon {
+        font-size: 4rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .course-card h3 {
+        color: #ffffff;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .course-description {
+        color: #cccccc;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .course-features {
+        list-style: none;
+        text-align: left;
+        margin-bottom: 2rem;
+      }
+
+      .course-features li {
+        color: #e0e0e0;
+        margin-bottom: 0.8rem;
+        padding-left: 1.5rem;
+        position: relative;
+        font-size: 0.95rem;
+      }
+
+      .course-features li::before {
+        content: "✓";
+        color: #ff6b35;
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .pricing-info {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+      }
+
+      .price-main {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #ff6b35;
+        margin-bottom: 0.5rem;
+      }
+
+      .price-alt {
+        color: #cccccc;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .price-guarantee {
+        color: #ffa726;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .course-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        padding: 1.2rem 2.5rem;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+        width: 100%;
+        display: block;
+        text-align: center;
+      }
+
+      .course-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(255, 107, 53, 0.5);
+      }
+
+      .course-button.secondary {
+        background: transparent;
+        border: 2px solid #ff6b35;
+        color: #ff6b35;
+        box-shadow: none;
+      }
+
+      .course-button.secondary:hover {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+      }
+
+      /* Contact Form Section */
+      .contact-form-section {
+        padding: 4rem 2rem;
+        background-color: #2a2a2a;
+      }
+
+      .form-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .form-description {
+        text-align: center;
+        color: #cccccc;
+        font-size: 1.1rem;
+        margin-bottom: 3rem;
+        line-height: 1.6;
+      }
+
+      .contact-form {
+        background: linear-gradient(145deg, #333333, #404040);
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 107, 53, 0.2);
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        color: #ffffff;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+      }
+
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        width: 100%;
+        padding: 1.2rem;
+        border: 2px solid #555;
+        border-radius: 12px;
+        background-color: #2a2a2a;
+        color: #ffffff;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus,
+      .form-group select:focus {
+        outline: none;
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
+        transform: translateY(-1px);
+      }
+
+      .form-group textarea {
+        resize: vertical;
+        height: 140px;
+      }
+
+      .submit-button {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        padding: 1.5rem 4rem;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 30px rgba(255, 107, 53, 0.4);
+        width: 100%;
+      }
+
+      .submit-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 40px rgba(255, 107, 53, 0.5);
+      }
+
+      /* Quick Contact Options */
+      .quick-contact {
+        padding: 3rem 2rem;
+        background: linear-gradient(135deg, #333333, #404040);
+      }
+
+      .quick-contact-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .quick-contact h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .quick-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .quick-option {
+        background: linear-gradient(145deg, #2a2a2a, #363636);
+        padding: 2rem;
+        border-radius: 16px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 107, 53, 0.2);
+      }
+
+      .quick-option:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.15);
+      }
+
+      .quick-option h4 {
+        color: #ff6b35;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+
+      .quick-option p {
+        color: #cccccc;
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .contact-link {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        padding: 0.8rem 1.8rem;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        font-size: 0.95rem;
+      }
+
+      .contact-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      }
+
+      /* Success Message */
+      .success-message {
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: white;
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        margin-bottom: 2rem;
+        text-align: center;
+        display: none;
+        animation: slideIn 0.5s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      /* Response Guarantee */
+      .response-guarantee {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        padding: 2rem;
+        text-align: center;
+        color: white;
+        margin: 2rem 0;
+      }
+
+      .response-guarantee h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .response-guarantee p {
+        font-size: 1.1rem;
+        opacity: 0.95;
+      }
+
+      /* Trust Indicators */
+      .trust-section {
+        padding: 3rem 2rem;
+        background-color: #1a1a1a;
+        text-align: center;
+      }
+
+      .trust-stats {
+        display: flex;
+        justify-content: center;
+        gap: 4rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .trust-stat {
+        text-align: center;
+      }
+
+      .trust-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ff6b35;
+        display: block;
+      }
+
+      .trust-label {
+        color: #cccccc;
+        font-size: 1rem;
+      }
+
+      /* FAQ Enhancement */
+      .faq-section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        background: linear-gradient(145deg, #333333, #404040);
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(255, 107, 53, 0.1);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .faq-item:hover {
+        border-color: #ff6b35;
+        transform: translateX(5px);
+      }
+
+      .faq-question {
+        color: #ff6b35;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .faq-answer {
+        color: #cccccc;
+        line-height: 1.7;
+        font-size: 1rem;
+      }
+
+      .faq-toggle {
+        color: #ff6b35;
+        font-size: 1.5rem;
+        transition: transform 0.3s ease;
+      }
+
+      .faq-item.active .faq-toggle {
+        transform: rotate(45deg);
+      }
+
+      /* Form Enhancements */
+      .form-progress {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+      }
+
+      .progress-step {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .progress-step.active {
+        color: #ff6b35;
+      }
+
+      .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #666;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 0.8rem;
+      }
+
+      .progress-step.active .step-circle {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.8rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .course-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-form {
+          padding: 2rem;
+        }
+
+        .hero-stats,
+        .trust-stats {
+          flex-direction: column;
+          gap: 1.5rem;
+        }
+
+        .quick-grid {
+          grid-template-columns: 1fr;
+        }
+
+        nav {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+        }
+
+        .course-card.featured {
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Sully Studios</div>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html" class="cta-button">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Start Your Child's Coding Journey Today</h1>
+      <p>
+        Join 20,000+ families who've transformed screen time into skill time.
+        Choose the perfect option for your child and get started in minutes.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-number">⭐⭐⭐⭐⭐</span>
+          <span class="stat-label">5/5 Star Rating</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">24 hrs</span>
+          <span class="stat-label">Response Time</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">20,000+</span>
+          <span class="stat-label">Happy Students</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="course-options">
+      <h2 class="section-title">Choose Your Perfect Plan</h2>
+      <p class="section-subtitle">
+        All plans include the complete Scratch Game Development Course, lifetime
+        access, and our 14-day money-back guarantee.
+      </p>
+
+      <div class="course-grid">
+        <div class="course-card">
+          <div class="course-icon">🚀</div>
+          <h3>Free Trial</h3>
+          <p class="course-description">
+            Perfect for trying out our teaching method and seeing if your child
+            loves it.
+          </p>
+
+          <ul class="course-features">
+            <li>7 days full access</li>
+            <li>All course content included</li>
+            <li>No credit card required</li>
+            <li>Cancel anytime</li>
+            <li>Keep any games created</li>
+          </ul>
+
+          <div class="pricing-info">
+            <div class="price-main">$0.00</div>
+            <div class="price-alt">7 days free</div>
+            <div class="price-guarantee">No commitment required</div>
+          </div>
+
+          <a href="#contact-form" class="course-button secondary"
+            >Start Free Trial</a
+          >
+        </div>
+
+
+        <div class="course-card">
+            <div class="course-icon">🏆</div>
+            <h3>Monthly Access</h3>
+            <p class="course-description">
+                Great for families who want flexibility and prefer monthly payments.            </p>
+  
+            <ul class="course-features">
+                <li>Complete course access</li>
+                <li>Monthly live Q&A sessions</li>
+                <li>Priority email support</li>
+                <li>New content updates</li>
+                <li>Community forum access</li>
+            </ul>
+  
+            <div class="pricing-info">
+                <div class="price-main">$19.99</div>
+                <div class="price-alt">per month</div>
+                <div class="price-guarantee">Cancel anytime, no fees</div>
+              </div>
+  
+              <a href="#contact-form" class="course-button">Get Monthly Access</a>       
+              </div>  
+        <div class="course-card featured">
+          <div class="course-icon">💎</div>
+          <h3>Lifetime Access</h3>
+          <p class="course-description">
+            The best value for committed families. Pay once, learn forever.
+          </p>
+
+          <ul class="course-features">
+            <li>Lifetime course access</li>
+              <li>All future updates included</li>
+              <li>Bonus advanced tutorials</li>
+              <li>Priority support forever</li>
+              <li>Certificate of completion</li>
+         
+          </ul>
+
+          
+          <div class="pricing-info">
+            <div class="price-main">$49.99</div>
+            <div class="price-alt">one-time payment</div>
+            <div class="price-guarantee">Best value - save $190/year</div>
+          </div>
+
+      
+          <a href="#contact-form" class="course-button">Get Lifetime Access</a>
+        </div>
+
+        
+      </div>
+    </section>
+
+    <div class="response-guarantee">
+      <h3>⚡ Fast Response Guaranteed</h3>
+      <p>
+        We respond to all inquiries within 24 hours, usually within 2-4 hours
+        during business days
+      </p>
+    </div>
+
+    <section class="quick-contact">
+      <div class="quick-contact-content">
+        <h2>Need Help Choosing?</h2>
+
+        <div class="quick-grid">
+          <div class="quick-option">
+            <h4>📞 Schedule a Call</h4>
+            <p>
+              Get personalized recommendations based on your child's age,
+              interests, and experience level.
+            </p>
+            <a href="#contact-form" class="contact-link"
+              >Book Free Consultation</a
+            >
+          </div>
+
+          <div class="quick-option">
+            <h4>💬 Live Chat Support</h4>
+            <p>
+              Quick questions? Get instant answers about our courses, pricing,
+              and what's right for your family.
+            </p>
+            <a href="#contact-form" class="contact-link">Start Chat</a>
+          </div>
+
+          <div class="quick-option">
+            <h4>🎓 School Partnerships</h4>
+            <p>
+              Special rates for educators, homeschool groups, and institutions.
+              Let's discuss custom solutions.
+            </p>
+            <a href="#contact-form" class="contact-link">Get Group Pricing</a>
+          </div>
+
+          <div class="quick-option">
+            <h4>🛠 Technical Support</h4>
+            <p>
+              Having trouble with course access or need help with setup? Our
+              technical team is here to help.
+            </p>
+            <a href="#contact-form" class="contact-link">Get Technical Help</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-form-section" id="contact-form">
+      <div class="form-container">
+        <h2 class="section-title">Get Started or Ask Questions</h2>
+        <p class="form-description">
+          Ready to enroll or have questions? Fill out the form below and we'll
+          get back to you with everything you need to get started.
+        </p>
+
+        <form class="contact-form" id="contactForm">
+          <div id="successMessage" class="success-message">
+            <strong>🎉 Message sent successfully!</strong> We'll get back to you
+            within 24 hours with next steps.
+          </div>
+
+          <div class="form-progress">
+            <div class="progress-step active">
+              <div class="step-circle">1</div>
+              <span>Contact Info</span>
+            </div>
+            <div class="progress-step">
+              <div class="step-circle">2</div>
+              <span>Your Needs</span>
+            </div>
+            <div class="progress-step">
+              <div class="step-circle">3</div>
+              <span>Submit</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">Parent/Guardian First Name *</label>
+              <input type="text" id="firstName" name="firstName" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name *</label>
+              <input type="text" id="lastName" name="lastName" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number (Optional)</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="childName">Child's First Name *</label>
+            <input type="text" id="childName" name="childName" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="childAge">Child's Age *</label>
+              <select id="childAge" name="childAge" required>
+                <option value="">Select age...</option>
+                <option value="5-6">5-6 years old</option>
+                <option value="7-8">7-8 years old</option>
+                <option value="9-10">9-10 years old</option>
+                <option value="11-12">11-12 years old</option>
+                <option value="13-14">13-14 years old</option>
+                <option value="15-16">15-16 years old</option>
+                <option value="17+">17+ years old</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="experience">Previous Coding Experience *</label>
+              <select id="experience" name="experience" required>
+                <option value="">Select level...</option>
+                <option value="none">Complete Beginner</option>
+                <option value="some-scratch">Some Scratch Experience</option>
+                <option value="other-visual">
+                  Other Block Coding (Code.org, etc.)
+                </option>
+                <option value="text-coding">Some Text-Based Coding</option>
+                <option value="advanced">
+                  Advanced (Python, JavaScript, etc.)
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="courseInterest">What are you interested in? *</label>
+            <select id="courseInterest" name="courseInterest" required>
+              <option value="">Please select...</option>
+              <option value="free-trial">Start 7-Day Free Trial</option>
+              <option value="monthly">
+                Monthly Subscription ($19.99/month)
+              </option>
+              <option value="lifetime">
+                Lifetime Access ($49.99 one-time)
+              </option>
+              <option value="group-discount">School/Group Pricing</option>
+              <option value="general-questions">General Questions</option>
+              <option value="custom-curriculum">
+                Custom Curriculum Request
+              </option>
+              <option value="technical-support">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="goals">What are your child's goals? (Optional)</label>
+            <select id="goals" name="goals">
+              <option value="">Select primary goal...</option>
+              <option value="fun">Just for fun and creativity</option>
+              <option value="school-prep">
+                Prepare for computer science classes
+              </option>
+              <option value="career-interest">
+                Interested in programming career
+              </option>
+              <option value="problem-solving">
+                Develop problem-solving skills
+              </option>
+              <option value="screen-time">
+                Turn screen time into learning time
+              </option>
+              <option value="confidence">Build confidence in technology</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="timeline">When would you like to start?</label>
+            <select id="timeline" name="timeline">
+              <option value="">Select timeline...</option>
+              <option value="immediately">Immediately</option>
+              <option value="this-week">This week</option>
+              <option value="next-week">Next week</option>
+              <option value="this-month">Within this month</option>
+              <option value="just-exploring">Just exploring options</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Additional Information or Questions</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Tell us about your child's interests, any specific questions you have, or anything else we should know to help you better..."
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-button">
+            Send Message & Get Started
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class="trust-section">
+      <div class="trust-stats">
+        <div class="trust-stat">
+          <span class="trust-number">20,000+</span>
+          <span class="trust-label">Students Taught</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-number">12,589</span>
+          <span class="trust-label">5-Star Reviews</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-number">98%</span>
+          <span class="trust-label">Satisfaction Rate</span>
+        </div>
+        <div class="trust-stat">
+          <span class="trust-number">15+</span>
+          <span class="trust-label">Games Built Per Student</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-section">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-question">
+          How quickly will my child see results?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Most kids build their first working game within the first hour of
+          starting the course. By week one, they'll have created multiple games
+          and gained confidence in their coding abilities. The course is
+          designed for quick wins to keep them motivated.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-question">
+          What if my child has no coding experience?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Perfect! This course is specifically designed for complete beginners.
+          We start with the absolute basics and guide them step-by-step. No
+          prior experience required - just curiosity and willingness to learn.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-question">
+          Do you offer refunds if it's not a good fit?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Absolutely! We offer a 7-day free trial and a 14-day money-back
+          guarantee. If you're not completely satisfied, we'll refund your
+          purchase with no questions asked.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-question">
+          How long does the course take to complete?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          The core course includes 5+ hours of video content, but most students
+          spend 2-3 weeks working through it at their own pace. The beauty is
+          they can go as fast or slow as they want, and they get lifetime access
+          to revisit any lessons.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-question">
+          What devices does the course work on?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          The course works on any device with internet access - computers,
+          tablets, even smart TVs. Scratch runs in any web browser, so there's
+          nothing to download or install. Works on Windows, Mac, iPad, Android,
+          and Chromebooks.
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFAQ(this)">
+        <div class="faq-question">
+          Do you offer group discounts for multiple children?
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          Yes! We offer special pricing for families with multiple children,
+          homeschool co-ops, and schools. Contact us with your specific needs
+          and we'll create a custom package that works for your budget.
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Enhanced form submission handling
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Simulate form processing
+          const submitButton = document.querySelector(".submit-button");
+          const originalText = submitButton.textContent;
+
+          // Show loading state
+          submitButton.textContent = "Sending Message...";
+          submitButton.disabled = true;
+
+          // Simulate API call delay
+          setTimeout(() => {
+            // Show success message
+            const successMessage = document.getElementById("successMessage");
+            successMessage.style.display = "block";
+
+            // Update progress indicators
+            document
+              .querySelectorAll(".progress-step")
+              .forEach((step, index) => {
+                if (index === 2) step.classList.add("active");
+              });
+
+            // Scroll to success message
+            successMessage.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+
+            // Reset form after delay
+            setTimeout(() => {
+              this.reset();
+              successMessage.style.display = "none";
+              submitButton.textContent = originalText;
+              submitButton.disabled = false;
+
+              // Reset progress
+              document
+                .querySelectorAll(".progress-step")
+                .forEach((step, index) => {
+                  if (index !== 0) step.classList.remove("active");
+                });
+            }, 5000);
+          }, 1500);
+        });
+
+      // Form progress tracking
+      const formInputs = document.querySelectorAll(
+        "#contactForm input[required], #contactForm select[required]"
+      );
+
+      function updateProgress() {
+        const filledRequired = Array.from(formInputs).filter((input) =>
+          input.value.trim()
+        ).length;
+        const progressSteps = document.querySelectorAll(".progress-step");
+
+        // Update progress based on completion
+        if (filledRequired >= 3) {
+          progressSteps[1].classList.add("active");
+        } else {
+          progressSteps[1].classList.remove("active");
+        }
+      }
+
+      formInputs.forEach((input) => {
+        input.addEventListener("input", updateProgress);
+        input.addEventListener("change", updateProgress);
+      });
+
+      // FAQ toggle functionality
+      function toggleFAQ(element) {
+        element.classList.toggle("active");
+        const answer = element.querySelector(".faq-answer");
+
+        if (element.classList.contains("active")) {
+          answer.style.display = "block";
+          answer.style.maxHeight = answer.scrollHeight + "px";
+          answer.style.opacity = "1";
+          answer.style.marginTop = "1rem";
+        } else {
+          answer.style.display = "none";
+          answer.style.maxHeight = "0";
+          answer.style.opacity = "0";
+          answer.style.marginTop = "0";
+        }
+      }
+
+      // Initialize FAQ answers as hidden
+      document.querySelectorAll(".faq-answer").forEach((answer) => {
+        answer.style.display = "none";
+        answer.style.maxHeight = "0";
+        answer.style.opacity = "0";
+        answer.style.transition = "all 0.3s ease";
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Enhanced form validation with real-time feedback
+      const requiredFields = document.querySelectorAll(
+        "input[required], select[required], textarea[required]"
+      );
+
+      requiredFields.forEach((field) => {
+        field.addEventListener("blur", function () {
+          validateField(this);
+        });
+
+        field.addEventListener("input", function () {
+          if (this.value.trim()) {
+            this.style.borderColor = "#ff6b35";
+            this.style.boxShadow = "0 0 0 3px rgba(255, 107, 53, 0.1)";
+          }
+        });
+      });
+
+      function validateField(field) {
+        if (!field.value.trim()) {
+          field.style.borderColor = "#dc3545";
+          field.style.boxShadow = "0 0 0 3px rgba(220, 53, 69, 0.1)";
+        } else {
+          field.style.borderColor = "#28a745";
+          field.style.boxShadow = "0 0 0 3px rgba(40, 167, 69, 0.1)";
+        }
+      }
+
+      // Auto-fill form based on course card clicks
+      document.querySelectorAll(".course-button").forEach((button) => {
+        button.addEventListener("click", function (e) {
+          if (this.getAttribute("href") === "#contact-form") {
+            e.preventDefault();
+
+            const courseType =
+              this.closest(".course-card").querySelector("h3").textContent;
+            const courseSelect = document.getElementById("courseInterest");
+
+            // Auto-select the appropriate option
+            if (courseType.includes("Free Trial")) {
+              courseSelect.value = "free-trial";
+            } else if (courseType.includes("Monthly")) {
+              courseSelect.value = "monthly";
+            } else if (courseType.includes("Lifetime")) {
+              courseSelect.value = "lifetime";
+            }
+
+            // Scroll to form
+            document.getElementById("contact-form").scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+
+            // Focus first input
+            setTimeout(() => {
+              document.getElementById("firstName").focus();
+            }, 800);
+          }
+        });
+      });
+    </script>
+    <footer>Made by Avi. (This will be removed)</footer>
+  </body>
+</html>

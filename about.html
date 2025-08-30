@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Sully Studios</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        line-height: 1.6;
+        color: #ffffff;
+        background-color: #1a1a1a;
+      } /* Header & Navigation */
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #2a2a2a;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ff6b35;
+      }
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+        align-items: center;
+      }
+      nav ul li a {
+        text-decoration: none;
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+      }
+      nav ul li a:hover {
+        color: #ff6b35;
+      }
+      nav ul li a.cta-button {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
+      }
+      nav ul li a.cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+      } /* Hero Section */
+      .hero {
+        padding: 6rem 2rem 4rem;
+        text-align: center;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 26, 26, 0.9),
+          rgba(42, 42, 42, 0.8)
+        );
+      }
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .hero p {
+        font-size: 1.2rem;
+        color: #e0e0e0;
+        max-width: 700px;
+        margin: 0 auto;
+      } /* Instructor Section */
+      .instructor-section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .instructor-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .instructor-image {
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        aspect-ratio: 1;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 600;
+        box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+      }
+      .instructor-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .instructor-text h3 {
+        color: #ff6b35;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .instructor-text p {
+        color: #cccccc;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.7;
+      }
+      .instructor-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .stat-card {
+        background: linear-gradient(145deg, #333333, #404040);
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        border: 1px solid rgba(255, 107, 53, 0.2);
+      }
+      .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ff6b35;
+        display: block;
+      }
+      .stat-label {
+        color: #cccccc;
+        font-size: 0.9rem;
+      } /* YouTube Section */
+      .youtube-section {
+        padding: 4rem 2rem;
+        background-color: #2a2a2a;
+      }
+      .youtube-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      .youtube-text h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .youtube-text p {
+        color: #cccccc;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        line-height: 1.7;
+      }
+      .youtube-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      }
+      .youtube-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+      }
+      .youtube-preview {
+        background: linear-gradient(135deg, #333333, #404040);
+        aspect-ratio: 16/9;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #cccccc;
+        font-size: 1.2rem;
+        border: 1px solid rgba(255, 107, 53, 0.2);
+      } /* Mission Section */
+      .mission-section {
+        padding: 4rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .mission-content {
+        text-align: center;
+      }
+      .mission-content h2 {
+        font-size: 2.8rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .mission-content p {
+        font-size: 1.3rem;
+        color: #cccccc;
+        max-width: 800px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+      }
+      .mission-highlights {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .highlight-card {
+        background: linear-gradient(145deg, #333333, #404040);
+        padding: 2rem;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 107, 53, 0.1);
+      }
+      .highlight-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(255, 107, 53, 0.15);
+      }
+      .highlight-card h3 {
+        color: #ff6b35;
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      .highlight-card p {
+        color: #cccccc;
+        line-height: 1.6;
+      } /* Experience Section */
+      .experience-section {
+        padding: 4rem 2rem;
+        background-color: #2a2a2a;
+      }
+      .experience-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .experience-content h2 {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+      .experience-card {
+        background: linear-gradient(145deg, #333333, #404040);
+        padding: 2rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 107, 53, 0.2);
+      }
+      .experience-card h4 {
+        color: #ff6b35;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+      .experience-card p {
+        color: #cccccc;
+        font-size: 0.95rem;
+      } /* Call to Action */
+      .cta-section {
+        padding: 4rem 2rem;
+        text-align: center;
+      }
+      .cta-section h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: #ffffff;
+      }
+      .cta-section p {
+        font-size: 1.2rem;
+        color: #cccccc;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .cta-button-large {
+        display: inline-block;
+        background: linear-gradient(135deg, #ff6b35, #ffa726);
+        color: white;
+        padding: 1.2rem 3rem;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: 600;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+        transition: all 0.3s ease;
+      }
+      .cta-button-large:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
+      } /* Responsive Design */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .instructor-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+        .youtube-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+        .instructor-stats {
+          grid-template-columns: 1fr;
+        }
+        nav {
+          flex-direction: column;
+          gap: 1rem;
+        }
+        nav ul {
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">Sully Studios</div>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="contact.html" class="cta-button">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section class="hero">
+      <h1>Meet the Instructor</h1>
+      <p>
+        Learn from a professional game developer with over 20 years of
+        experience creating games and teaching the next generation of creators.
+      </p>
+    </section>
+    <section class="instructor-section">
+      <div class="instructor-content">
+        <div class="instructor-image">[Sulaiman Jackson Portrait]</div>
+        <div class="instructor-text">
+          <h2>Sulaiman Jackson</h2>
+          <h3>Professional Game Developer & Educator</h3>
+          <p>
+            Sulaiman Jackson is a professional game developer, educator, and
+            YouTuber with over 20 years of experience creating games. His
+            passion lies in helping kids transition from consuming content to
+            creating their own interactive experiences.
+          </p>
+          <p>
+            With a proven track record of teaching complex concepts in simple,
+            engaging ways, Sulaiman has helped thousands of students discover
+            their potential in game development and programming.
+          </p>
+          <p>
+            His mission: help kids go from watching to building the games they
+            love — with zero experience required.
+          </p>
+          <div class="instructor-stats">
+            <div class="stat-card">
+              <span class="stat-number">20+</span>
+              <span class="stat-label">Years Experience</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number">20,000+</span>
+              <span class="stat-label">Students Taught</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="youtube-section">
+      <div class="youtube-content">
+        <div class="youtube-text">
+          <h2>Watch My Tutorials on YouTube</h2>
+          <p>
+            Over 100,000 subscribers and 30 million+ views. On YouTube, I teach
+            aspiring creators how to build amazing games using Scratch, Unity,
+            and real-world development tools.
+          </p>
+          <p>
+            My tutorials break down complex game development concepts into
+            digestible, fun lessons that anyone can follow along with.
+          </p>
+          <a href="#" class="youtube-button">🎥 Visit YouTube Channel</a>
+        </div>
+        <div class="youtube-preview">[YouTube Channel Preview]</div>
+      </div>
+    </section>
+    <section class="mission-section">
+      <div class="mission-content">
+        <h2>Our Mission</h2>
+        <p>
+          We believe every child deserves the opportunity to create, not just
+          consume. In an age where technology shapes our future, we're committed
+          to giving kids the tools and confidence to become creators.
+        </p>
+        <div class="mission-highlights">
+          <div class="highlight-card">
+            <h3>🎮 Learn by Creating</h3>
+            <p>
+              Instead of just playing games, students learn by building their
+              own interactive experiences from scratch.
+            </p>
+          </div>
+          <div class="highlight-card">
+            <h3>🚀 Future-Ready Skills</h3>
+            <p>
+              Teaching problem-solving, logic, and creativity that prepares
+              students for tomorrow's opportunities.
+            </p>
+          </div>
+          <div class="highlight-card">
+            <h3>👨‍👩‍👧‍👦 Family-Friendly</h3>
+            <p>
+              Designed for kids and families, with clear instruction and
+              age-appropriate content that parents can trust.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="experience-section">
+      <div class="experience-content">
+        <h2>Why Learn With Sully Studios?</h2>
+        <div class="experience-grid">
+          <div class="experience-card">
+            <h4>Proven Method</h4>
+            <p>
+              Our step-by-step approach has successfully taught over 20,000
+              students worldwide.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>Real Games</h4>
+            <p>
+              Students build actual games they can play, share, and be proud of
+              creating.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>No Experience Required</h4>
+            <p>
+              Start from absolute zero and progress to creating complex,
+              interactive games.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>Lifetime Skills</h4>
+            <p>
+              Learn fundamental programming concepts that transfer to any coding
+              language.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>Creative Expression</h4>
+            <p>
+              Encourage artistic vision while building technical skills through
+              game creation.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>Continuous Support</h4>
+            <p>
+              Access to community, updates, and ongoing guidance throughout your
+              learning journey.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>Award-Winning Studio</h4>
+            <p>
+              Learn from developers who've created award-winning games and
+              published 10+ original titles to Steam and Google Play.
+            </p>
+          </div>
+          <div class="experience-card">
+            <h4>Kid-Friendly Approach</h4>
+            <p>
+              Specially designed Scratch-based curriculum that makes coding fun
+              and accessible for children and complete beginners.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cta-section">
+      <h2>Ready to Start Creating?</h2>
+      <p>
+        Join thousands of students who have already discovered the joy of game
+        development with Sully Studios.
+      </p>
+      <a href="contact.html" class="cta-button-large">Start Your Journey</a>
+    </section>
+    <script>
+      // Smooth scrolling for navigation links document.querySelectorAll('a[href^="#"]').forEach((anchor) => { anchor.addEventListener("click", function (e) { e.preventDefault(); const target = document.querySelector(this.getAttribute("href")); if (target) { target.scrollIntoView({ behavior: "smooth", block: "start", }); } }); });
+    </script>
+    <footer>Made by Avi. (This will be removed)</footer>
+  </body>
+</html>
