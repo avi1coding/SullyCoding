@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iron Snout</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a1a1a;
+        color: white;
+      }
+
+      .game-container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .controls {
+        background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #333;
+      }
+
+      .game-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fff;
+      }
+
+      .fullscreen-btn {
+        background: linear-gradient(135deg, #4caf50, #45a049);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .fullscreen-btn:hover {
+        background: linear-gradient(135deg, #45a049, #3d8b40);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      .fullscreen-btn:active {
+        transform: translateY(0);
+      }
+
+      .iframe-container {
+        flex: 1;
+        position: relative;
+        background: #000;
+      }
+
+      #gameFrame {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+
+      /* Fullscreen styles */
+      .game-container:-webkit-full-screen {
+        background: #000;
+      }
+
+      .game-container:-moz-full-screen {
+        background: #000;
+      }
+
+      .game-container:fullscreen {
+        background: #000;
+      }
+
+      .game-container:-webkit-full-screen .controls {
+        display: none;
+      }
+
+      .game-container:-moz-full-screen .controls {
+        display: none;
+      }
+
+      .game-container:fullscreen .controls {
+        display: none;
+      }
+
+      /* Exit fullscreen hint */
+      .fullscreen-hint {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 10px 15px;
+        border-radius: 4px;
+        font-size: 12px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1000;
+      }
+
+      .game-container:fullscreen .fullscreen-hint {
+        opacity: 1;
+      }
+
+      /* Loading indicator */
+      .loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        z-index: 100;
+      }
+
+      .loading-spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid #333;
+        border-top: 4px solid #4caf50;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 20px auto;
+      }
+
+      .loading-text {
+        color: #666;
+        font-size: 16px;
+        margin-bottom: 10px;
+        animation: pulse 1.5s ease-in-out infinite alternate;
+      }
+
+      .loading-dots {
+        color: #4caf50;
+        font-size: 20px;
+        animation: dots 1.5s steps(4, end) infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes dots {
+        0%,
+        20% {
+          content: "";
+        }
+        40% {
+          content: ".";
+        }
+        60% {
+          content: "..";
+        }
+        80%,
+        100% {
+          content: "...";
+        }
+      }
+
+      .loading-progress {
+        width: 200px;
+        height: 4px;
+        background: #333;
+        border-radius: 2px;
+        margin: 15px auto 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .loading-progress::after {
+        content: "";
+        position: absolute;
+        left: -200px;
+        width: 200px;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, #4caf50, transparent);
+        animation: loading-bar 2s linear infinite;
+      }
+
+      @keyframes loading-bar {
+        0% {
+          left: -200px;
+        }
+        100% {
+          left: 200px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .controls {
+          padding: 8px 15px;
+        }
+
+        .game-title {
+          font-size: 16px;
+        }
+
+        .fullscreen-btn {
+          padding: 8px 16px;
+          font-size: 13px;
+        }
+      }
+      .food {
+        text-decoration: none;
+      }
+      .mango {
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="game-container" id="gameContainer">
+      <div class="controls">
+        <a href="index.html" class="mango">
+          <li class="food">
+            <div class="game-title">AMported</div>
+          </li></a
+        >
+
+        <button
+          class="fullscreen-btn"
+          id="fullscreenBtn"
+          onclick="toggleFullscreen()"
+        >
+          <span id="btnText">⛶ Fullscreen</span>
+        </button>
+      </div>
+
+      <div class="iframe-container">
+        <div class="loading" id="loading">
+          <div class="loading-spinner"></div>
+          <div class="loading-text">Loading game</div>
+          <div class="loading-dots"></div>
+          <div class="loading-progress"></div>
+        </div>
+        <iframe
+          id="gameFrame"
+          src="https://ccported.github.io/play?gameID=game_d6c3_a1f514e521dd4"
+          allowfullscreen
+          style="opacity: 0; transition: opacity 0.8s ease-in-out"
+        ></iframe>
+      </div>
+
+      <div class="fullscreen-hint">Press ESC to exit fullscreen</div>
+    </div>
+
+    <script>
+      let isFullscreen = false;
+      const gameContainer = document.getElementById("gameContainer");
+      const fullscreenBtn = document.getElementById("fullscreenBtn");
+      const btnText = document.getElementById("btnText");
+
+      function toggleFullscreen() {
+        if (!isFullscreen) {
+          enterFullscreen();
+        } else {
+          exitFullscreen();
+        }
+      }
+
+      function enterFullscreen() {
+        const element = gameContainer;
+
+        if (element.requestFullscreen) {
+          element.requestFullscreen();
+        } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+        } else if (element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+        }
+      }
+
+      function exitFullscreen() {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
+      }
+
+      // Listen for fullscreen changes
+      function handleFullscreenChange() {
+        isFullscreen = !!(
+          document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement ||
+          document.msFullscreenElement
+        );
+
+        if (isFullscreen) {
+          btnText.innerHTML = "⛌ Exit Fullscreen";
+          fullscreenBtn.style.background =
+            "linear-gradient(135deg, #f44336, #d32f2f)";
+        } else {
+          btnText.innerHTML = "⛶ Fullscreen";
+          fullscreenBtn.style.background =
+            "linear-gradient(135deg, #4CAF50, #45a049)";
+        }
+      }
+
+      // Add event listeners for different browsers
+      document.addEventListener("fullscreenchange", handleFullscreenChange);
+      document.addEventListener(
+        "webkitfullscreenchange",
+        handleFullscreenChange
+      );
+      document.addEventListener("mozfullscreenchange", handleFullscreenChange);
+      document.addEventListener("MSFullscreenChange", handleFullscreenChange);
+
+      let gameLoaded = false;
+      let contentReady = false;
+
+      function checkIfGameReady() {
+        const gameFrame = document.getElementById("gameFrame");
+        const loading = document.getElementById("loading");
+
+        try {
+          // Check if iframe content is accessible and loaded
+          const iframeDoc =
+            gameFrame.contentDocument || gameFrame.contentWindow.document;
+
+          // Check if the game content is actually loaded (not just the iframe)
+          if (iframeDoc && iframeDoc.readyState === "complete") {
+            // Additional check: see if there's actual content
+            const body = iframeDoc.body;
+            if (
+              body &&
+              (body.children.length > 0 || body.innerHTML.trim() !== "")
+            ) {
+              contentReady = true;
+            }
+          }
+        } catch (e) {
+          // Cross-origin iframe - use alternative detection
+          // Game is considered ready after iframe loads + additional time for game initialization
+          if (gameLoaded) {
+            setTimeout(() => {
+              contentReady = true;
+              hideLoadingWhenReady();
+            }, 2000); // Wait 2 seconds after iframe load for game to initialize
+          }
+        }
+
+        if (contentReady && gameLoaded) {
+          hideLoadingWhenReady();
+        }
+      }
+
+      function hideLoadingWhenReady() {
+        const loading = document.getElementById("loading");
+        const gameFrame = document.getElementById("gameFrame");
+
+        if (loading.style.display === "none") return; // Already hidden
+
+        // Fade out loading screen
+        loading.style.opacity = "0";
+        loading.style.transition = "opacity 0.8s ease-out";
+
+        // Fade in game iframe
+        gameFrame.style.opacity = "1";
+
+        // Remove loading element after animation
+        setTimeout(() => {
+          loading.style.display = "none";
+        }, 800);
+      }
+
+      // Monitor iframe loading
+      document
+        .getElementById("gameFrame")
+        .addEventListener("load", function () {
+          gameLoaded = true;
+
+          // Start checking if content is ready
+          const checkInterval = setInterval(() => {
+            checkIfGameReady();
+            if (contentReady) {
+              clearInterval(checkInterval);
+            }
+          }, 500);
+
+          // Fallback: hide loading after maximum wait time
+          setTimeout(() => {
+            if (!contentReady) {
+              contentReady = true;
+              hideLoadingWhenReady();
+            }
+            clearInterval(checkInterval);
+          }, 10000); // 10 second maximum wait
+        });
+
+      // Also check periodically in case load event doesn't fire properly
+      const globalCheck = setInterval(() => {
+        if (gameLoaded && contentReady) {
+          clearInterval(globalCheck);
+          return;
+        }
+        checkIfGameReady();
+      }, 1000);
+
+      // Keyboard shortcuts
+      document.addEventListener("keydown", function (e) {
+        // F11 key for fullscreen toggle
+        if (e.key === "F11") {
+          e.preventDefault();
+          toggleFullscreen();
+        }
+
+        // ESC key to exit fullscreen (handled natively, but we can add custom behavior)
+        if (e.key === "Escape" && isFullscreen) {
+          // This will be handled by the browser automatically
+        }
+      });
+
+      // Handle iframe focus for better keyboard interaction
+      document
+        .getElementById("gameFrame")
+        .addEventListener("load", function () {
+          // Optional: Auto-focus the iframe when it loads
+          // this.focus();
+        });
+    </script>
+  </body>
+</html>
